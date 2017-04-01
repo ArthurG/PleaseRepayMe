@@ -7,6 +7,8 @@ Flask-Mail==0.9.1
 Flask-Script==2.0.5
 Flask-SQLAlchemy==2.1
 Flask-WTF==0.12
+Flask-Restful
+flask-cors
 gunicorn==19.4.5
 itsdangerous==0.24
 pytz==2016.10

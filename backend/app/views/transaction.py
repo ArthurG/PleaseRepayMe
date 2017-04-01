@@ -1,24 +1,56 @@
-from flask import render_template, jsonify
-from app import app, models, db
+from flask import render_template, jsonify, request
+from flask_restful import Resource, reqparse
+from app import app, models, db, api
+import datetime
 
+parser = reqparse.RequestParser()
+parser.add_argument('transaction_id')
+parser.add_argument('borrower_name')
+parser.add_argument('thread_link')
+parser.add_argument('lender_name')
+parser.add_argument('lender_comment_url')
+parser.add_argument('agree_comment_url')
+parser.add_argument('date_requested', type=lambda x: datetime.datetime.fromtimestamp(x))
+parser.add_argument('payment_prediction')
+parser.add_argument('lender_comment_url')
+parser.add_argument('payment_prediction')
+parser.add_argument('result_thread')
+parser.add_argument('status', type=lambda x: models.StatusType.fromstring(x))
 
-@app.route('/transaction')
-def transaction_all():
-    return jsonify(models.Transaction.query.all())
+class Transaction(Resource):
+    def get(self, transaction_id):
+        m = models.Transaction.query.filter_by(transaction_id=transaction_id).first_or_404()
+        del m._sa_instance_state 
+        return jsonify(m.__dict__)
+    def post(self, transaction_id):
+        m = models.Transaction.query.filter_by(transaction_id=transaction_id)
+        update_vals = parser.parse_args()
+        update_vals.pop("transaction_id", None)
+        m.update(update_vals)
+        db.session.commit()
 
-@app.route('/transaction/', methods=['POST'])
-def add_transaction():
-    return render_template('map.html', title='Map')
+        m2 = m.first()
+        del m2._sa_instance_state 
+        return jsonify(m2.__dict__)
+    #Delete transaction not implemented
 
-@app.route('/transaction/<transaction_id>', methods=['GET'])
-def get_transaction(transaction_id):
-    return render_template('map.html', title='Map')
+class TransactionList(Resource):
+   def get(self):
+       ans = models.Transaction.query.all()
+       for m in ans:
+           del m._sa_instance_state 
+       return jsonify({"transactions": [item.__dict__ for item in ans]})
+   def post(self):
+       args = parser.parse_args()
+       model = models.Transaction(**args)
+       db.session.add(model)
+       db.session.commit()
 
-@app.route('/transaction/<transaction_id>', methods=['POST'])
-def update_transaction(transaction_id):
-    points = [(random.uniform(48.8434100, 48.8634100),
-               random.uniform(2.3388000, 2.3588000))
-              for _ in range(random.randint(2, 9))]
-    return jsonify({'points': points})
+       m = models.Transaction.query.filter_by(transaction_id=model.transaction_id).first()
+       del m._sa_instance_state
+       return jsonify(m.__dict__)
 
-#Delete transaction not implemented
+  
+
+api.add_resource(Transaction, '/transaction/<transaction_id>')
+api.add_resource(TransactionList, '/transactions')

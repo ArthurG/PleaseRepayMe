@@ -35,12 +35,19 @@ class User(db.Model, UserMixin):
 
     def get_id(self):
         return self.email
-class StatusType(enum.Enum):
-   lender  = "Looking for lender"
-   confirm  = "Waiting for agreement"
-   repayment  = "Waiting for repayment"
-   repaid  = "Successfully repaid"
-   defaulted  = "Defaulted on payment"
+class StatusType(enum.IntEnum):
+   looking_lender  = 0
+   wait_confirm  = 1
+   wait_repay = 2
+   resolve_repaid = 3
+   resolve_defaulted  = 4
+   def __str__(self):
+       return str(self.value)
+   def __repr__(self):
+       return str(self.value)
+   @classmethod
+   def fromstring(cls, i):
+       return getattr(cls, i, None)
 
 class Transaction(db.Model):
 
@@ -56,18 +63,8 @@ class Transaction(db.Model):
     agree_comment_url = db.Column(db.String)
     date_requested = db.Column(db.DateTime)
     payment_prediction = db.Column(db.Float)
-    repayment_confidence = db.Column(db.String)
     result_thread = db.Column(db.Boolean)
     status = db.Column(db.Enum(StatusType))
-
-    def __init__(self, borrower_name, thread_link, repayment_confidence, prediction_model, date_requested):
-      self.borrower_name = borrower_name
-      self.thread_link = thread_link
-      self.repayment_confidence = repayment_confidence
-      self.prediction_model = prediction_model
-      self.date_requested = date_requested
-
-      self.status = StatusType.lender
 
     def add_lender(self, lender_name, lender_comment_url):
         self.lender_name = lender_name
