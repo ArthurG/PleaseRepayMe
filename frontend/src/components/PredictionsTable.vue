@@ -14,7 +14,7 @@
       </div>
 
       <!-- Main table element -->
-      <b-table striped hover :items="items" :fields="fields" :current-page="currentPage" :per-page="perPage" :filter="filter">
+      <b-table striped hover :items="transactions" :fields="fields" :current-page="currentPage" :per-page="perPage" :filter="filter">
          <template slot="borrower_name" scope="item">
             <a v-bind:href="item.item.original_thread_url">{{item.item.borrower_name}}</a>
          </template>
@@ -27,7 +27,7 @@
       </b-table>
 
       <div class="justify-content-center row my-1">
-        <b-pagination size="md" :total-rows="this.items.length" :per-page="perPage" v-model="currentPage" />
+        <b-pagination size="md" :total-rows="this.transactions.length" :per-page="perPage" v-model="currentPage" />
       </div>
   </div>
 </template>
@@ -37,68 +37,7 @@ export default {
   name: 'PredictionsTable',
   data () {
     return {
-      'items': [
-        {
-          'agree_comment_url': 'true',
-          'borrower_name': 'arthur',
-          'date_requested': 'Sat, 01 Apr 2017 12:18:37 GMT',
-          'lender_comment_url': 'google.ca',
-          'lender_name': 'andrew',
-          'original_thread_url': 'youtube.com',
-          'repayment_probability': 1.235,
-          'settle_thread_url': 'gsgdfhsdf.ca',
-          'status': 1,
-          'transaction_id': 1
-        },
-        {
-          'agree_comment_url': 'true',
-          'borrower_name': 'arthur',
-          'date_requested': 'Sat, 01 Apr 2017 12:18:37 GMT',
-          'lender_comment_url': 'google.ca',
-          'lender_name': 'andrew',
-          'original_thread_url': 'youtube.com',
-          'repayment_probability': null,
-          'settle_thread_url': 'gsgdfhsdf.ca',
-          'status': 1,
-          'transaction_id': 2
-        },
-        {
-          'agree_comment_url': 'true',
-          'borrower_name': 'arthur',
-          'date_requested': 'Sat, 01 Apr 2017 12:18:37 GMT',
-          'lender_comment_url': 'google.ca',
-          'lender_name': 'andrew',
-          'original_thread_url': 'youtube.com',
-          'repayment_probability': null,
-          'settle_thread_url': 'gsgdfhsdf.ca',
-          'status': 1,
-          'transaction_id': 3
-        },
-        {
-          'agree_comment_url': 'true',
-          'borrower_name': 'arthur',
-          'date_requested': 'Sat, 01 Apr 2017 12:18:37 GMT',
-          'lender_comment_url': 'google.ca',
-          'lender_name': 'andrew',
-          'original_thread_url': 'youtube.com',
-          'repayment_probability': null,
-          'settle_thread_url': 'gsgdfhsdf.ca',
-          'status': 1,
-          'transaction_id': 4
-        },
-        {
-          'agree_comment_url': 'true',
-          'borrower_name': 'arthur',
-          'date_requested': 'Sat, 01 Apr 2017 12:18:37 GMT',
-          'lender_comment_url': 'google.ca',
-          'lender_name': 'andrew',
-          'original_thread_url': 'youtube.com',
-          'repayment_probability': null,
-          'settle_thread_url': 'gsgdfhsdf.ca',
-          'status': 1,
-          'transaction_id': 5
-        }
-      ],
+      'transactions': [],
       fields: {
         transaction_id: {
           label: 'id',
@@ -129,16 +68,19 @@ export default {
       filter: null
     }
   },
-  computed: {
-    compItems: function () {
-      this.items
+  methods: {
+    getTransactions () {
+      this.$http.get('http://localhost:5000/transactions').then(resp => {
+        this.transactions = resp.body.transactions
+      }, err => {
+        console.log(err)
+      })
     }
   },
-  methods: {
-    details (item) {
-      alert(JSON.stringify(item))
-    }
+  mounted () {
+    this.getTransactions()
   }
+
 }
 </script>
 
