@@ -5,6 +5,7 @@
     <Dashboard></Dashboard>
     <PredictionsTable></PredictionsTable>
     <PredictUser></PredictUser>
+    <Footer></Footer>
     <!--
     <h1>{{ msg }}</h1>
     <h2>Essential Links</h2>
@@ -33,6 +34,7 @@ import Dashboard from './../components/Dashboard'
 import PredictionsTable from './../components/PredictionsTable'
 import PredictUser from './../components/PredictUser'
 import MainBanner from './../components/MainBanner'
+import Footer from './../components/Footer'
 
 export default {
   name: 'hello',
@@ -41,7 +43,8 @@ export default {
     Dashboard,
     MainBanner,
     PredictionsTable,
-    PredictUser
+    PredictUser,
+    Footer
   },
   data () {
     return {

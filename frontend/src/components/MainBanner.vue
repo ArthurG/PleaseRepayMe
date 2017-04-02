@@ -6,7 +6,8 @@
     <div class="ad-detail col-lg-8 col-md-6">
       <div class="ad-detail-text">
         <h1>Borrow Project</h1>
-        <p><a href="#" class="learn-more">Learn More</a>How do we bring credit scores to the 21st century?</p>
+        <p> Reddit history to make lending decisions</p>
+        <p><a href="#" class="learn-more">Learn More </a> How do we bring credit scores to the 21st century?</p>
       </div>
     </div>
 

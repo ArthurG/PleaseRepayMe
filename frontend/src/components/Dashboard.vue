@@ -2,7 +2,7 @@
   <div class="container" id="about">
     <h1 class="col-lg-12">Statistics</h1>
 
-    <div class="col-sm-6 col-lg-6">
+    <div class="col-sm-6 col-lg-4">
         <div class="card card-inverse card-primary">
           <div class="card-block pb-0">
             <h4 class="mb-0">9.823</h4>
@@ -10,11 +10,30 @@
           </div>
           <card-line1-chart-example class="chart-wrapper px-1" style="height:70px;" height="70"/>
         </div>
-      </div><!--/.col-->
+    </div><!--/.col acc-->
+
+    <div class="col-sm-6 col-lg-4">
+        <div class="card card-inverse card-primary">
+          <div class="card-block pb-0">
+            <h4 class="mb-0">9.823</h4>
+            <p>Precision</p>
+          </div>
+          <card-line1-chart-example class="chart-wrapper px-1" style="height:70px;" height="70"/>
+        </div>
+    </div><!--/.col acc-->
+
+     <div class="col-sm-6 col-lg-4">
+        <div class="card card-inverse card-primary">
+          <div class="card-block pb-0">
+            <h4 class="mb-0">9.823</h4>
+            <p>Recall</p>
+          </div>
+          <card-line1-chart-example class="chart-wrapper px-1" style="height:70px;" height="70"/>
+        </div>
+    </div><!--/.col acc-->
 
 
-      </div>
-    </div>
+
 
   </div>
 </template>
