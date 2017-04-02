@@ -35,6 +35,7 @@ class User(db.Model, UserMixin):
 
     def get_id(self):
         return self.email
+
 class StatusType(enum.IntEnum):
    looking_lender  = 0
    wait_confirm  = 1
@@ -57,13 +58,13 @@ class Transaction(db.Model):
 
     transaction_id = db.Column(db.Integer, primary_key=True)
     borrower_name = db.Column(db.String)
-    thread_link = db.Column(db.String)
     lender_name = db.Column(db.String)
+    date_requested = db.Column(db.DateTime)
+    repayment_probability = db.Column(db.Float)
+    original_thread_url = db.Column(db.String)
     lender_comment_url = db.Column(db.String)
     agree_comment_url = db.Column(db.String)
-    date_requested = db.Column(db.DateTime)
-    payment_prediction = db.Column(db.Float)
-    result_thread = db.Column(db.Boolean)
+    settle_thread_url = db.Column(db.String)
     status = db.Column(db.Enum(StatusType))
 
     def add_lender(self, lender_name, lender_comment_url):
