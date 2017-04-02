@@ -1,7 +1,10 @@
 <template>
   <div class="hello">
     <TopNav></TopNav>
+    <MainBanner></MainBanner>
+    <Dashboard></Dashboard>
     <PredictionsTable></PredictionsTable>
+    <PredictUser></PredictUser>
     <!--
     <h1>{{ msg }}</h1>
     <h2>Essential Links</h2>
@@ -26,12 +29,19 @@
 
 <script>
 import TopNav from './../components/TopNav'
+import Dashboard from './../components/Dashboard'
 import PredictionsTable from './../components/PredictionsTable'
+import PredictUser from './../components/PredictUser'
+import MainBanner from './../components/MainBanner'
+
 export default {
   name: 'hello',
   components: {
     TopNav,
-    PredictionsTable
+    Dashboard,
+    MainBanner,
+    PredictionsTable,
+    PredictUser
   },
   data () {
     return {
