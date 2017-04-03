@@ -1,6 +1,7 @@
 <template>
-  <div class="container" id="about">
-    <h1 class="col-lg-12">Statistics</h1>
+  <div class="wrapper">
+  <div class="container" id="stats">
+    <h2 class="col-lg-12">Statistics</h2>
 
     <div class="col-sm-6 col-lg-4">
         <div class="card card-inverse card-primary">
@@ -36,6 +37,8 @@
 
 
   </div>
+
+    </div>
 </template>
 
 <script>
@@ -75,8 +78,11 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 
+h2{
+  color: white;
+}
+
 .container{
-  border: 1px solid black;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
@@ -84,6 +90,10 @@ export default {
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
   padding: 20px;
+}
+
+.wrapper{
+    background: black;
 }
 
 .reddit-screen{

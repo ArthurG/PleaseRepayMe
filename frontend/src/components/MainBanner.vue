@@ -24,7 +24,6 @@ export default {
 <style scoped>
 
 .container{
-  border: 1px solid red;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
@@ -32,6 +31,11 @@ export default {
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
   padding: 20px;
+}
+
+#about{
+  height: 500px;
+
 }
 
 .reddit-screen{

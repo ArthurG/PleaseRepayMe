@@ -2,9 +2,9 @@
   <div class="hello">
     <TopNav></TopNav>
     <MainBanner></MainBanner>
-    <Dashboard></Dashboard>
     <PredictionsTable></PredictionsTable>
     <PredictUser></PredictUser>
+    <Dashboard></Dashboard>
     <Footer></Footer>
     <!--
     <h1>{{ msg }}</h1>

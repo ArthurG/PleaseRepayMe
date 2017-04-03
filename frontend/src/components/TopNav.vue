@@ -11,11 +11,10 @@
   <b-collapse is-nav id="nav_collapse">
 
   <b-nav is-nav-bar>
-  <b-nav-item>Home</b-nav-item>
-  <b-nav-item>Stats</b-nav-item>
-  <b-nav-item>Past Predictions</b-nav-item>
-  <b-nav-item>Make Predictions</b-nav-item>
-  <b-nav-item>About</b-nav-item>
+  <router-link to="/"><b-nav-item>Home</b-nav-item></router-link>
+  <router-link to="/#stats"><b-nav-item>Stats</b-nav-item></router-link>
+  <router-link to="/#prediction-table"><b-nav-item>Past Predictios</b-nav-item></router-link>
+  <router-link to="/#make-predict"><b-nav-item>Make Predictios</b-nav-item></router-link>
   </b-nav>
 
   </b-nav>

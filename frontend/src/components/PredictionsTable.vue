@@ -1,5 +1,5 @@
 <template>
-  <div class="container" id="PredictionsTable">
+  <div class="container" id="prediction-table">
       <h2 class="header col-lg-12"> Past predictions </h2>
       <div class="justify-content-centermy-1 row col-12">
         <b-form-fieldset horizontal label="Rows per page" class="col-md-6 col-sm-12" :label-size="6">

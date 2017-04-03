@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container" id="make-predict">
         <h2 class="header col-lg-12"> Make predictions </h2>
         <div v-bind:class="{ 'col-lg-8': hasResult, 'col-lg-12': !hasResult}">
           <b-card>
