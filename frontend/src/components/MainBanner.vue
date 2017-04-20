@@ -1,8 +1,6 @@
 <template>
+  <div class="background-wrapper">
   <div class="container" id="about">
-    <div class="phone col-lg-4 col-md-6">
-      <img src="../assets/reddit.png" class="reddit-screen">
-    </div>
     <div class="ad-detail col-lg-8 col-md-6">
       <div class="ad-detail-text">
         <h1>Borrow Project</h1>
@@ -11,6 +9,7 @@
       </div>
     </div>
 
+  </div>
   </div>
 </template>
 
@@ -33,9 +32,16 @@ export default {
   padding: 20px;
 }
 
+.background-wrapper{
+  background-image: url("../assets/jumbotron-img.jpg");
+  background-repeat:no-repeat;
+  background-position: center;
+  background-size: contain;
+  background-color: black;
+}
+
 #about{
   height: 500px;
-
 }
 
 .reddit-screen{
@@ -52,8 +58,12 @@ export default {
 }
 
 .learn-more{
+  color: grey;
+  background-color: white;
+}
+
+.ad-detail-text{
   color: white;
-  background-color: black;
 }
 
 

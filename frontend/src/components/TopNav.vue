@@ -13,8 +13,8 @@
   <b-nav is-nav-bar>
   <router-link to="/"><b-nav-item>Home</b-nav-item></router-link>
   <router-link to="/#stats"><b-nav-item>Stats</b-nav-item></router-link>
-  <router-link to="/#prediction-table"><b-nav-item>Past Predictios</b-nav-item></router-link>
-  <router-link to="/#make-predict"><b-nav-item>Make Predictios</b-nav-item></router-link>
+  <router-link to="/#prediction-table"><b-nav-item>Past Predictions</b-nav-item></router-link>
+  <router-link to="/#make-predict"><b-nav-item>Make Predictions</b-nav-item></router-link>
   </b-nav>
 
   </b-nav>
