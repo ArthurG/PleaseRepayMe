@@ -1,55 +1,22 @@
 <template>
   <div class="hello">
     <TopNav></TopNav>
-    <MainBanner></MainBanner>
-    <PredictionsTable></PredictionsTable>
     <PredictUser></PredictUser>
-    <Dashboard></Dashboard>
     <Footer></Footer>
-    <!--
-    <h1>{{ msg }}</h1>
-    <h2>Essential Links</h2>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank">Forum</a></li>
-      <li><a href="https://gitter.im/vuejs/vue" target="_blank">Gitter Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank">Twitter</a></li>
-      <br>
-      <li><a href="http://vuejs-templates.github.io/webpack/" target="_blank">Docs for This Template</a></li>
-    </ul>
-    <h2>Ecosystem</h2>
-    <ul>
-      <li><a href="http://router.vuejs.org/" target="_blank">vue-router</a></li>
-      <li><a href="http://vuex.vuejs.org/" target="_blank">vuex</a></li>
-      <li><a href="http://vue-loader.vuejs.org/" target="_blank">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank">awesome-vue</a></li>
-    </ul>
-    -->
   </div>
 </template>
 
 <script>
 import TopNav from './../components/TopNav'
-import Dashboard from './../components/Dashboard'
-import PredictionsTable from './../components/PredictionsTable'
 import PredictUser from './../components/PredictUser'
-import MainBanner from './../components/MainBanner'
 import Footer from './../components/Footer'
 
 export default {
   name: 'hello',
   components: {
     TopNav,
-    Dashboard,
-    MainBanner,
-    PredictionsTable,
     PredictUser,
     Footer
-  },
-  data () {
-    return {
-      msg: 'Welcome to Your Vue.js App'
-    }
   }
 }
 </script>

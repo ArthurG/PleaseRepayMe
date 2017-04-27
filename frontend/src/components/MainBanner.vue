@@ -10,6 +10,27 @@
     </div>
 
   </div>
+
+<div class="row col-lg-12">
+            <div class="a1 col-lg-4">
+               <div class="row">
+                   Data Driven Lending
+               </div>
+               <div class="row">
+                   Proven Track Record
+               </div>
+               <div class="row">
+                   500GB+ of Data Analyzed
+               </div>
+            </div>
+            <div class="a2 col-lg-8">
+            Hi 
+            </div>
+ 
+
+        </div>
+
+
   </div>
 </template>
 

@@ -8,10 +8,13 @@ import VueResource from 'vue-resource'
 import BootstrapVue from 'bootstrap-vue/dist/bootstrap-vue.esm'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
+import Icon from 'vue-awesome/components/Icon'
+import 'vue-awesome/icons'
 
 Vue.config.productionTip = false
 Vue.use(BootstrapVue)
 Vue.use(VueResource)
+Vue.component('icon', Icon)
 
 /* eslint-disable no-new */
 new Vue({

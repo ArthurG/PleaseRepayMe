@@ -5,19 +5,16 @@
   <b-nav-toggle target="nav_collapse"></b-nav-toggle>
 
   <b-link class="navbar-brand" to="#">
-  <span>BootstrapVue</span>
+  <span>Borrowr</span>
   </b-link>
 
   <b-collapse is-nav id="nav_collapse">
 
-  <b-nav is-nav-bar>
-  <router-link to="/"><b-nav-item>Home</b-nav-item></router-link>
-  <router-link to="/#stats"><b-nav-item>Stats</b-nav-item></router-link>
-  <router-link to="/#prediction-table"><b-nav-item>Past Predictions</b-nav-item></router-link>
-  <router-link to="/#make-predict"><b-nav-item>Make Predictions</b-nav-item></router-link>
+  <b-nav is-nav-bar class="ml-auto">
+  <router-link to="/"><b-nav-item right-alignment><icon name="github"></icon></b-nav-item></router-link>
+  <router-link to="/"><b-nav-item right-alignment><icon name="envelope-o"></icon></b-nav-item></router-link>
   </b-nav>
 
-  </b-nav>
   </b-collapse>
   </b-navbar>
   </div>
@@ -29,4 +26,13 @@ export default {
   name: 'TopNav'
 }
 </script>
+
+<style scoped>
+.fa-icon{
+  width: auto;
+  height: 2.0em;
+  color: white;
+}
+
+</style>
 
