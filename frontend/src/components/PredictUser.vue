@@ -1,9 +1,13 @@
 <template>
   <div class="container" id="make-predict">
-        <h2 class="header col-lg-12"> Predict Loan Repayment </h2>
+        <h2 class="header col-lg-12"> Predict /r/borrow Loan Repayment </h2>
         <div class="row col-lg-12">
-            <b-form-input v-model="threadUrl" type="text" placeholder="Please enter the /r/borrow request link" :state="threadUrl.length?'success':'warning'" class="predict-user-box col-lg-10"></b-form-input>
-            <b-btn @click="getUserPrediction" variant="primary" class="predict-submit col-lg-2">Predict</b-btn>
+            <div class = "input-group">
+            <b-form-input v-model="threadUrl" type="text" placeholder="Enter /r/borrow post URL" :state="threadUrl.length?'success':'warning'" class="predict-user-box"></b-form-input>
+            <span class="input-group-btn">
+               <b-btn @click="getUserPrediction" variant="primary" class="predict-submit"><span class="hidden-md-up"><icon name="search"></icon></span><span class="hidden-sm-down">Predict</span></b-btn>
+            </span>
+            </div>
         </div>
         <div v-if="hasResult" v-bind:class="{ 'col-lg-12': hasResult }">
            <b-card>
@@ -54,6 +58,20 @@ export default {
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
   padding: 20px;
+}
+
+input{
+  border-radius:0px;
+  border-color: white white #E0E0E0 white;
+}
+
+input:focus{
+  border-color: white white red white;
+
+}
+
+button{
+  border-radius:0px;
 }
 
 </style scoped>
