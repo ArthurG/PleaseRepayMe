@@ -9,39 +9,35 @@
             </span>
             </div>
         </div>
-        <div v-if="hasResult" v-bind:class="{ 'col-lg-12': hasResult }">
-           <b-card>
-              <h5> <a v-bind:href="getLink(userName)">/u/{{userName}}</a></h5>
-              <p>Repayment Probability: {{userResult}}</p>
-           </b-card>
-        </div>
+        
+        <UserStatCards :RedditBorrowUrls="{borrowUrls}" />
   </div>
 </template>
 
 <script>
+
+import BorrowStatBar from './BorrowStatBar'
+import UserStatCards from './UserStatCard'
+
 export default {
   name: 'PredictUser',
   data () {
     return {
-      hasResult: false,
       threadUrl: '',
-      userName: '',
-      userResult: ''
+      borrow: 'https://www.reddit.com/r/uwaterloo/comments/67ynix/this_description_about_the_virginia_tech_logo_on/',
+      borrowUrls: []
     }
+  },
+  components: {
+    BorrowStatBar,
+    UserStatCards
   },
   methods: {
     getLink (user) {
       return 'https://www.reddit.com/u/' + user
     },
     getUserPrediction () {
-      this.$http.get('http://localhost:5000/predict?thread_url=' + this.threadUrl).then(resp => {
-        console.log(resp.body)
-        this.userName = resp.body.user
-        this.userResult = resp.body.prediction
-        this.hasResult = true
-      }, err => {
-        console.log(err)
-      })
+      this.borrowUrls.push(this.threadUrl)
     }
 
   }
@@ -72,6 +68,20 @@ input:focus{
 
 button{
   border-radius:0px;
+}
+
+.risk{
+  background-color: red;
+  border: 2px solid black;
+}
+
+.bar-risk{
+  background-color: red;
+  min-height: 10px;
+}
+.bar-safe{
+  background-color: blue;
+  min-height: 10px;
 }
 
 </style scoped>

@@ -1,6 +1,5 @@
 <template>
   <div class="hello">
-    <TopNav></TopNav>
     <PredictUser></PredictUser>
     <Footer></Footer>
   </div>
