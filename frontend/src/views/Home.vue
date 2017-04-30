@@ -1,21 +1,21 @@
 <template>
   <div class="hello">
     <PredictUser></PredictUser>
-    <Footer></Footer>
+    <BotNav></BotNav>
   </div>
 </template>
 
 <script>
 import TopNav from './../components/TopNav'
 import PredictUser from './../components/PredictUser'
-import Footer from './../components/Footer'
+import BotNav from './../components/BotNav'
 
 export default {
   name: 'hello',
   components: {
     TopNav,
     PredictUser,
-    Footer
+    BotNav
   }
 }
 </script>
