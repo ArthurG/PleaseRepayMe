@@ -10,7 +10,9 @@ def predict():
 
     thread_url = request.args.get("thread_url", False)
     usernameStr = pipeline.get_user_from_thread_url(thread_url)
-    #prediction = pipeline.predict(usernameStr)
-    return jsonify({"user": usernameStr, "prediction": "1.0"})
+    predictive_data = pipeline.get_predictive_data(usernameStr)
+    predictions = pipeline.predict_user_repayment2(predictive_data) 
+    return jsonify({"user": usernameStr, "prediction": predictions[1][0][1],
+                    "num_borrow": predictive_data["num_borrow"], "num_req": predictive_data["num_req"]})
 
 
