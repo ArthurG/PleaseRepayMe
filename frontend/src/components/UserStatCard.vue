@@ -1,28 +1,32 @@
 <template>
     <div class="row col-lg-12">
-        <div class="col-lg-6 user-card" v-for="user in userDetails">
-            <b-card :header="user.name">
+        <div class="col-lg-6" v-for="user in userDetails" >
+          <div class="user-card">
+          <a class="card-link" v-bind:href="user.url">
+            <div>
+              <div class="user-card-header">
+                 {{user.name}}
+              </div>
               <div v-if="user.hasResult">
-
-                  <div class="borrow-statistics card-section">
-                      <h5>/r/borrow Statistics</h5>
+                  <div class="borrow-statistics user-card-section">
+                      <h5 class="user-card-subheader">/r/borrow Statistics</h5>
                       <borrow-stat-bar :userBorrowData="user.userBorrowData" class="chart-wrapper px-1" height="90"/>
                   </div>
-
-                  <div class="repayment-prediction card-section">
-                      <h5>Repayment Prediction</h5>
+                  <div class="repayment-prediction user-card-section">
+                      <h5 class="user-card-subheader">Repayment Prediction</h5>
                       <div class="bar-risk">
-                          <div class="bar-safe" style="width: {user.width}%">
+                          <div class="bar-safe" v-bind:style="user.width">
                               {{user.prob}}
                           </div>
                       </div>
                   </div>
-
               </div>
-              <div v-else>
+              <div v-else class="user-card-empty">
                   <pulse-loader :loading="loading" :color="color" :size="size"></pulse-loader>
               </div>
-           </b-card>
+            </div>
+          </a>
+          </div>
         </div>
 
        <b-modal id="modal1" title="Error Retrieving Prediction" hide-footer="true" >
@@ -40,7 +44,6 @@
 </template>
 
 <script>
-
 import BorrowStatBar from './BorrowStatBar'
 import PulseLoader from 'vue-spinner/src/PulseLoader.vue'
 
@@ -83,9 +86,10 @@ export default {
       var item = {hasResult: false}
       this.userDetails.unshift(item)
       this.$http.get('http://localhost:5000/predict?thread_url=' + url).then(resp => {
-        item.name = resp.body.user
+        item.url = url
+        item.name = '/u/' + resp.body.user
         item.prob = resp.body.prediction
-        item.width = resp.body.prediction * 100 - 10
+        item.width = 'width: ' + (resp.body.prediction * 100).toString() + '%'
         item.userBorrowData = [1, 2, 3]
         item.hasResult = true
       }, () => {
@@ -107,21 +111,42 @@ export default {
 .bar-safe{
   background-color: #2196F3;
   min-height: 10px;
+  color: #f5f5f5;
+  text-align: center;
+  padding-left: 0.5em;
 }
 
-.card{
+.card-link{
+  color: black;
+  text-decoration: none;
+}
+
+.user-card-empty{
+  text-align: center;
+}
+
+.user-card{
+  text-align: left;
   margin: 1em 0;
+  border: 1px solid #eeeeee;
 }
 
-.card-header{
-  background-color: #BBDEFB;
-  font-size: 3em;
+.user-card:hover{
+  margin: 0.5em 0;
 }
-
-.card-section{
-  padding: 1em 0;
-
+.user-card-header{
+  font-size: 1.5em;
+  font-weight: 600;
+  margin: 0.5em;
+  color: #616161;
+}
+.user-card-section{
+  margin: 1em;
+}
+.user-card-subheader{
+  font-weight: 300;
+  font-size: 0.9em;
+  color: #9e9e9e;
 }
 
 </style scoped>
-
