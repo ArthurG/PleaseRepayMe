@@ -2,7 +2,7 @@
     <div class="row col-lg-12">
         <div class="col-lg-6" v-for="user in userDetails" >
           <div class="user-card">
-          <a class="card-link" v-bind:href="user.url">
+          <a class="card-link" v-bind:href="user.url" target="_blank">
             <div>
               <div class="user-card-header">
                  {{user.name}}
