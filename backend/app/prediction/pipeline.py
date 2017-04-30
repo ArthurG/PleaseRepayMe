@@ -38,7 +38,10 @@ def get_predictive_data(username):
   get_count_data(predictive_data, user.submissions.new(limit=None), "posts")
   predictive_data["num_borrow"] = num_borrow
   predictive_data["num_req"] = len(req_items)
-  predictive_data["pct_fulfilled"] = num_borrow/len(req_items)
+  if len(req_items) > 0:
+    predictive_data["pct_fulfilled"] = num_borrow/len(req_items) 
+  else:
+    predictive_data["pct_fulfilled"] = 0
 
   return predictive_data
 

@@ -90,7 +90,7 @@ export default {
         item.name = '/u/' + resp.body.user
         item.prob = resp.body.prediction
         item.width = 'width: ' + (resp.body.prediction * 100).toString() + '%'
-        item.userBorrowData = [1, 2, 3]
+        item.userBorrowData = [resp.body.num_req, resp.body.num_borrow, 0]
         item.hasResult = true
       }, () => {
         var idx = this.userDetails.indexOf(item)
