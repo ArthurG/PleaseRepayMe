@@ -3,7 +3,7 @@
     <i class="fa fa-facebook-official fa-2x"></i>
     <i class="fa fa-twitter fa-2x"></i>
     <i class="fa fa-envelope fa-2x"></i>
-    <p>Privacy | Terms of use</p>
+    <p>About | Privacy | Terms of use</p>
     <p>Copyright 2017</p>
   </footer>
 </template>
