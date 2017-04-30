@@ -3,13 +3,18 @@
         <div class="col-lg-6 user-card" v-for="user in userDetails">
             <b-card :header="user.name">
               <div v-if="user.hasResult">
-                  <h6>/r/borrow Statistics</h6>
-                  <borrow-stat-bar :userBorrowData="user.userBorrowData" class="chart-wrapper px-1" height="90"/>
 
-                  <h6>Repayment Prediction</h6>
-                  <div class="bar-risk">
-                      <div class="bar-safe" style="width: {user.width}%">
-                          {{user.prob}}
+                  <div class="borrow-statistics card-section">
+                      <h5>/r/borrow Statistics</h5>
+                      <borrow-stat-bar :userBorrowData="user.userBorrowData" class="chart-wrapper px-1" height="90"/>
+                  </div>
+
+                  <div class="repayment-prediction card-section">
+                      <h5>Repayment Prediction</h5>
+                      <div class="bar-risk">
+                          <div class="bar-safe" style="width: {user.width}%">
+                              {{user.prob}}
+                          </div>
                       </div>
                   </div>
 
@@ -25,7 +30,12 @@
              Your URL is likely invalid, or Reddit servers are down. Please try again.
           </p>
        </b-modal>
-     
+
+       <b-modal id="modal2" title="Request not processed" hide-footer="true" >
+          <p>
+             Statistics were previously retrieved for that user. In an effort to save computing power, that request was not processed. Please look in your current results to get the repayment liklihood instead.
+          </p>
+       </b-modal>
     </div>
 </template>
 
@@ -40,7 +50,8 @@ export default {
   data () {
     return {
       userDetails: [],
-      pastUrls: []
+      pastUrls: [],
+      pastLength: 0
     }
   },
   components: {
@@ -49,12 +60,19 @@ export default {
   },
   watch: {
     RedditBorrowUrls: function (newUrl) {
-      newUrl.borrowUrls.forEach((url) => {
-        if (this.pastUrls.indexOf(url) === -1) {
-          this.addUserDetails(url)
-          this.pastUrls.push(url)
-        }
+      var diff = newUrl.borrowUrls.filter(x => this.pastUrls.indexOf(x) < 0)
+
+      // Process new request
+      diff.forEach((url) => {
+        this.addUserDetails(url)
+        this.pastUrls.push(url)
       })
+
+      // Request not processed since it's duplicate
+      if (newUrl.borrowUrls.length > this.pastLength && diff.length === 0) {
+        this.$root.$emit('show::modal', 'modal2')
+      }
+      this.pastLength = newUrl.borrowUrls.length
     }
   },
   methods: {
@@ -97,6 +115,11 @@ export default {
 
 .card-header{
   background-color: #BBDEFB;
+  font-size: 3em;
+}
+
+.card-section{
+  padding: 1em 0;
 
 }
 
