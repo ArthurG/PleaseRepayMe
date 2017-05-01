@@ -54,7 +54,8 @@ export default {
     return {
       userDetails: [],
       pastUrls: [],
-      pastLength: 0
+      pastLength: 0,
+      color: '#2196F3'
     }
   },
   components: {
