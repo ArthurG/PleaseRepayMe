@@ -8,19 +8,24 @@
                  {{user.name}}
               </div>
               <div v-if="user.hasResult">
+
+                  <div class="borrow-prediction user-card-section">
+                      <h5 class="user-card-subheader">Predicted Outcome</h5>
+                      <p> 
+                         {{user.guessInWords}}
+                      </p>
+                  </div>
+
+                  <div class="repayment-prediction user-card-section">
+                      <h5 class="user-card-subheader">Loan Outcome Probabilities</h5>
+                      <repayment-stat-pie :height="150" :userProb="user.outcomeLikelihood" class="chart-wrapper px-1"/>
+                  </div>
+
                   <div class="borrow-statistics user-card-section">
                       <h5 class="user-card-subheader">/r/borrow Statistics</h5>
                       <borrow-stat-bar :userBorrowData="user.userBorrowData" class="chart-wrapper px-1" height="90"/>
                   </div>
-                  <div class="repayment-prediction user-card-section">
-                      <h5 class="user-card-subheader">Repayment Prediction</h5>
-                      <div class="bar-risk">
-                          <div class="bar-safe" v-bind:style="user.width">
-                              {{user.prob}}
-                          </div>
-                      </div>
-                  </div>
-              </div>
+                                </div>
               <div v-else class="user-card-empty">
                   <pulse-loader :loading="loading" :color="color" :size="size"></pulse-loader>
               </div>
@@ -45,6 +50,7 @@
 
 <script>
 import BorrowStatBar from './BorrowStatBar'
+import RepaymentStatPie from './RepaymentStatPie'
 import PulseLoader from 'vue-spinner/src/PulseLoader.vue'
 
 export default {
@@ -60,6 +66,7 @@ export default {
   },
   components: {
     BorrowStatBar,
+    RepaymentStatPie,
     PulseLoader
   },
   watch: {
@@ -89,8 +96,23 @@ export default {
       this.$http.get('http://localhost:5000/predict?thread_url=' + url).then(resp => {
         item.url = url
         item.name = '/u/' + resp.body.user
-        item.prob = resp.body.prediction
-        item.width = 'width: ' + (resp.body.prediction * 100).toString() + '%'
+        item.outcomeLikelihood = resp.body.prediction.map(function (x) {
+          return x * 100
+        })
+        item.guess = resp.body.guess
+        switch (item.guess) {
+          case '0':
+            item.guessInWords = 'Default'
+            break
+          case '1':
+            item.guessInWords = 'Repaid'
+            break
+          case '2':
+            item.guessInWords = 'No Lender Found'
+            break
+          default:
+            item.guessInWords = 'Error: No guess found'
+        }
         item.userBorrowData = [resp.body.num_req, resp.body.num_borrow, 0]
         item.hasResult = true
       }, () => {
@@ -104,18 +126,6 @@ export default {
 </script>
 
 <style scoped>
-
-.bar-risk{
-  background-color: #FF5722;
-  min-height: 10px;
-}
-.bar-safe{
-  background-color: #2196F3;
-  min-height: 10px;
-  color: #f5f5f5;
-  text-align: center;
-  padding-left: 0.5em;
-}
 
 .card-link{
   color: black;
