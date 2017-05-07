@@ -13,9 +13,11 @@
     "bootstrap-vue": "^0.14.0",
     "chart.js": "^2.5.0",
     "vue": "^2.2.2",
+    "vue-awesome": "^2.3.1",
     "vue-chartjs": "^2.5.6",
     "vue-resource": "^1.2.1",
-    "vue-router": "^2.2.0"
+    "vue-router": "^2.2.0",
+    "vue-spinner": "^1.0.2"
   },
   "devDependencies": {
     "autoprefixer": "^6.7.2",

@@ -1,0 +1,11 @@
+-move search button to below search bar
+-put more spacing between search bar and logo
+-Use background in video of home screen pixalbay (vid) pexels.com (photos)
+-Logo ??
+-Bacground 
+-use panes w/ plus signs instead of search at the top
+-add percentages inside pie graph, no hovering required
+
+-/u/ not required -> change to user
+-hover to fade other everything else
+
