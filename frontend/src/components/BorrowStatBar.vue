@@ -16,7 +16,7 @@ export default Bar.extend({
   methods: {
     render () {
       this.renderChart({
-        labels: ['REQ count', 'REQ Fulfilled', 'Repaid count'],
+        labels: ['REQ count', 'REQ Fulfilled'],
         datasets: [
           {
             backgroundColor: brandPrimary,

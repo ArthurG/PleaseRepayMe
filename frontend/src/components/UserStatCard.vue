@@ -113,7 +113,7 @@ export default {
           default:
             item.guessInWords = 'Error: No guess found'
         }
-        item.userBorrowData = [resp.body.num_req, resp.body.num_borrow, 0]
+        item.userBorrowData = [resp.body.num_req, resp.body.num_borrow]
         item.hasResult = true
       }, () => {
         var idx = this.userDetails.indexOf(item)
