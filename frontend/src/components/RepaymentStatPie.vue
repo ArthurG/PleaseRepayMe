@@ -25,7 +25,10 @@ export default Pie.extend({
         ]
       }, {
         maintainAspectRatio: false,
-        responsive: true
+        responsive: true,
+        animation: {
+          duration: 1500
+        }
       })
     }
   }
