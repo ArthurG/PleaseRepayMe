@@ -1,10 +1,10 @@
 <template>
   <div class="wrapper">
     <footer class="container">
-    <h2 class="bot-header"> Borrowr - Lending Reinvented</h2>
+    <h2 class="bot-header"> Repaid - Data-based lending</h2>
     <p class="bot-links">About | Privacy | Terms of use</p>
     <p class="bot-icons"><icon name="github"></icon> <icon name="envelope"></icon></p>
-    <p class="bot-copy">Copyright 2017, Made with <span class="highlight"><3</span> in Waterloo, Ontario, Canada eh</p>
+    <p class="bot-copy">Copyright 2017, Made with <span class="highlight"><3</span> in Waterloo, Ontario, Canada</p>
     </footer>
   </div>
 </template>
