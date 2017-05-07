@@ -94,6 +94,7 @@ export default {
   border-radius:0px;
   border-color: white white #E0E0E0 white;
   margin-right: 0.75em;
+  padding: 0 0.5em;
 }
 
 .predict-user-box:focus{
