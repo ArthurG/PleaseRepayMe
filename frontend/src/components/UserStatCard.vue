@@ -25,7 +25,7 @@
                       <h5 class="user-card-subheader">/r/borrow Statistics</h5>
                       <borrow-stat-bar :userBorrowData="user.userBorrowData" class="chart-wrapper px-1" height="90"/>
                   </div>
-                                </div>
+              </div>
               <div v-else class="user-card-empty">
                   <pulse-loader :loading="loading" :color="color" :size="size"></pulse-loader>
               </div>

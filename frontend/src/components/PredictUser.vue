@@ -54,6 +54,7 @@ export default {
     },
     getUserPrediction () {
       this.borrowUrls.push(this.threadUrl)
+      this.threadUrl = ''
     }
   }
 }
