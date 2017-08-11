@@ -12,6 +12,9 @@ app.config.from_object('app.config')
 # Setup the logger
 from app.logger_setup import logger
 
+#Import Redis
+from app.redis_setup import redis
+
 # Setup the database
 from flask.ext.sqlalchemy import SQLAlchemy
 db = SQLAlchemy(app)
@@ -41,7 +44,6 @@ from app.models import User
 login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = 'userbp.signin'
-
 
 @login_manager.user_loader
 def load_user(email):

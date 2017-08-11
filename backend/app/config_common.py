@@ -21,3 +21,13 @@ ADMINS = ['flask.boilerplate@gmail.com']
 
 # Number of times a password is hashed
 BCRYPT_LOG_ROUNDS = 12
+
+#Logging configuration
+LOG_FILENAME = 'reddit_project_activity.log'
+LOG_MAXBYTES = 1000000
+LOG_BACKUPS = 5000
+
+#Redis configuration
+REDIS_HOST = "localhost"
+REDIS_PORT = 6379
+REDIS_DB = 0

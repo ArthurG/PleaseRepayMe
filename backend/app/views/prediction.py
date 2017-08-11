@@ -3,6 +3,9 @@ from app import app
 from app.prediction import pipeline
 
 from app import logger
+from app import redis
+
+import pickle
 
 
 @app.route('/predict', methods=['GET'])
@@ -12,5 +15,14 @@ def predict():
         return jsonify({"Error": "Must contain thread_url"}), 400
     else:
         thread_url = request.args.get("thread_url", False)
-        return jsonify(pipeline.make_prediction(thread_url))
+        result = redis.get(thread_url)
+        if result:
+            logger.info('Predict endpoint cache hit', url=thread_url)
+            print(pickle.loads(result))
+            return jsonify(pickle.loads(result))
+        else:
+            answer = pipeline.make_prediction(thread_url)
+            redis.setex(thread_url, 500000, pickle.dumps(answer))
+            logger.info('Predict endpoint cached result', url=thread_url)
+            return jsonify(answer)
 

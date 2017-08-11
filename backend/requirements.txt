@@ -20,3 +20,4 @@ numpy
 praw
 scipy
 sklearn
+redis
