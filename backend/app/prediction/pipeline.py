@@ -6,12 +6,36 @@ import pickle
 from sklearn import externals
 import pandas as pd
 import numpy as np
-def get_user_from_thread_url(thread_url):
-  r = praw.Reddit(user_agent='BorrowR | https://github.com/guoarthur/reddit-queries',
+import time 
+
+
+def make_prediction(thread_url):
+
+    start_time = time.time()
+    r = praw.Reddit(user_agent='BorrowR | https://github.com/guoarthur/reddit-queries',
       client_id=CLIENT_ID, client_secret=CLIENT_SECRET, 
       username=USERNAME, password=PASSWORD)
-  submission = r.submission(url=thread_url)
-  return submission.author.name
+
+    submission = r.submission(url=thread_url)
+    if not submissions.subreddit.display_name == "borrow":
+        return {"Error": "Please only enter posts from the /r/borrow/ subreddit"}
+    if not "[REQ]" in submissions.title:
+        return {"Error": "Please only enter [REQ] posts from the /r/borrow/ subreddit"}
+    usernameStr = submission.author.name
+
+    predictive_data = get_predictive_data(usernameStr)
+    predictions = predict_user_repayment2(predictive_data) 
+    end_time = time.time()
+    answer= {"user": usernameStr, 
+            "start_time": start_time,
+            "end_time": end_time,
+            "prediction": [str(predictions[1][0][0]), 
+                str(predictions[1][0][1]), 
+                str(predictions[1][0][2])],
+            "guess": str(predictions[0][0]),
+            "num_borrow": predictive_data["num_borrow"], 
+            "num_req": predictive_data["num_req"]}
+    return answer
 
 def get_predictive_data(username):
   r = praw.Reddit(user_agent='BorrowR | https://github.com/guoarthur/reddit-queries',
@@ -22,7 +46,8 @@ def get_predictive_data(username):
   #Look through users [REQ] submissions, figure out how many were confirmed
   req_items = [submission 
                for submission in user.submissions.new(limit=None) 
-               if (submission.title.upper().startswith("[REQ]") and submission.subreddit.display_name == "borrow")]
+               if (submission.title.upper().startswith("[REQ]") and 
+                   submission.subreddit.display_name == "borrow")]
   num_borrow = 0
   for req in req_items:
     foundLender = 0
