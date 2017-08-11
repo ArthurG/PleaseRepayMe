@@ -12,10 +12,13 @@ import BootstrapVue from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 
+import VueCookie from 'vue-cookie'
+
 Vue.config.productionTip = false
 Vue.use(VueResource)
 Vue.use(BootstrapVue)
 Vue.component('icon', Icon)
+Vue.use(VueCookie)
 
 /* eslint-disable no-new */
 new Vue({

@@ -2,10 +2,12 @@
     <div class="row col-lg-12">
         <div class="col-lg-6" v-for="user in userDetails" >
           <div class="user-card">
-          <a class="card-link" v-bind:href="user.url" target="_blank">
             <div>
               <div class="user-card-header">
-                 {{user.name}}
+                 {{user.name}} 
+                  <a class="thread-link" v-if="user.name" v-bind:href="user.url" target="_blank"> 
+                    Link to thread 
+                  </a>
               </div>
               <div v-if="user.hasResult">
 
@@ -23,24 +25,23 @@
 
                   <div class="borrow-statistics user-card-section">
                       <h5 class="user-card-subheader">/r/borrow Statistics</h5>
-                      <borrow-stat-bar :userBorrowData="user.userBorrowData" class="chart-wrapper px-1" height="90"/>
+                      <borrow-stat-bar :userBorrowData="user.userBorrowData" class="chart-wrapper px-1" :height="90"/>
                   </div>
               </div>
               <div v-else class="user-card-empty">
                   <pulse-loader :loading="loading" :color="color" :size="size"></pulse-loader>
               </div>
             </div>
-          </a>
           </div>
         </div>
 
-       <b-modal id="modal1" title="Error Retrieving Prediction" hide-footer="true" >
+       <b-modal id="modal1" title="Error Retrieving Prediction" :hide-footer="true" >
           <p>
              Your URL is likely invalid, or Reddit servers are down. Please try again.
           </p>
        </b-modal>
 
-       <b-modal id="modal2" title="Request not processed" hide-footer="true" >
+       <b-modal id="modal2" title="Request not processed" :hide-footer="true" >
           <p>
              Statistics were previously retrieved for that user. In an effort to save computing power, that request was not processed. Please look in your current results to get the repayment liklihood instead.
           </p>
@@ -142,21 +143,25 @@ export default {
   border: 1px solid #eeeeee;
 }
 
-.user-card:hover{
-  margin: 0.5em 0;
-}
 .user-card-header{
   font-size: 1.5em;
   font-weight: 600;
   margin: 0.5em;
   color: #616161;
 }
+
 .user-card-section{
   margin: 1em;
 }
+
 .user-card-subheader{
   font-weight: 300;
   font-size: 0.9em;
+  color: #9e9e9e;
+}
+
+.thread-link{
+  font-size: 0.4em;
   color: #9e9e9e;
 }
 

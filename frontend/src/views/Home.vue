@@ -1,23 +1,24 @@
-<template>
-  <div class="hello">
-    <PredictUser></PredictUser>
-    <BotNav></BotNav>
-  </div>
-</template>
+  <template>
+    <div class="hello">
+      <PredictUser></PredictUser>
+      <BotNav></BotNav>
+      <Legal></Legal>
+    </div>
+  </template>
 
-<script>
-import TopNav from './../components/TopNav'
-import PredictUser from './../components/PredictUser'
-import BotNav from './../components/BotNav'
+  <script>
+  import PredictUser from './../components/PredictUser'
+  import BotNav from './../components/BotNav'
+  import Legal from './../components/Legal'
 
-export default {
-  name: 'hello',
-  components: {
-    TopNav,
-    PredictUser,
-    BotNav
+  export default {
+    name: 'hello',
+    components: {
+      PredictUser,
+      BotNav,
+      Legal
+    }
   }
-}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

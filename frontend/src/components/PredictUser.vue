@@ -1,7 +1,7 @@
 <template>
   <div class="container" id="make-predict" v-bind:class="{noStats: borrowUrls.length === 0}">
      <div v-if="borrowUrls.length === 0">
-        <span class="col-lg-12"><img src="../assets/logo.svg" class="logo"></span>
+        <span class="col-lg-12"><img src="../assets/Logo.png" class="logo"></span>
         <h2 class="header col-lg-12"> Predict /r/borrow Loan Repayment </h2>
         <div class="row">
             <form class="col-lg-12" v-on:submit.prevent="getUserPrediction">
@@ -15,9 +15,9 @@
         </div>
      </div>
 
-     <div v-if="borrowUrls.length > 0" class="hasStats row">
-        <div class="col-lg-1 col-md-1 col-sm-2"><img src="../assets/logo.svg" class="logo-sm"></div>
-        <div class="row col-lg-11 col-md-11 col-sm-10" style="height:100%;vertical-align: bottom;">
+     <div v-if="borrowUrls.length > 0" class="hasStats row top-nav-bar">
+        <div class="col-lg-1 col-md-1 col-sm-2"><img src="../assets/Logo.png" class="logo-sm"></div>
+        <div class="row col-lg-11 col-md-11 col-sm-10">
             <form class="col-lg-12" v-on:submit.prevent="getUserPrediction">
                 <div class = "input-group predict-user-group">
                     <b-form-input v-model="threadUrl" type="text" placeholder="Enter /r/borrow post URL" :state="threadUrl.length?'success':'warning'" class="predict-user-box"></b-form-input>
@@ -73,6 +73,11 @@ export default {
   font-weight: 700;
 }
 
+.top-nav-bar{
+  margin: 0.5em;
+
+}
+
 #make-predict{
   min-height: 100vh;
 
@@ -108,12 +113,13 @@ button{
 }
 
 .logo{
-  width: 100%;
-  height: 8em;
+  width: auto;
+  height: 10em;
+  margin: 3em;
 }
 
 .logo-sm{
-  width: 100%;
+  width: auto;
   height: 3em;
 }
 
