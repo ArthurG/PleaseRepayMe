@@ -1,7 +1,9 @@
 <template>
     <div>
       <b-modal id="modal-read-tos" title="Welcome!"
-        :hide-footer="true">
+        no-close-on-backdrop
+        ok-only
+        no-close-on-esc>
          <h5> By Proceeding to use this website, I agree to be bound by the 
               <a v-on:click="openTos"> Terms of Service </a>
          </h5>
@@ -83,7 +85,6 @@ export default {
   methods: {
     showTosDialogIfRequired: function () {
       if (this.$cookie.get('showed-tos')) {
-        this.$root.$emit('show::modal', 'modal-read-tos')
         console.log('TOS last shown on ')
         console.log(this.$cookie.get('showed-tos'))
       } else {
