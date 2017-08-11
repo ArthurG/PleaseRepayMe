@@ -1,3 +1,5 @@
+from app import logger
+
 import praw
 from pprint import pprint 
 from .settings import CLIENT_ID, CLIENT_SECRET, USERNAME, PASSWORD
@@ -16,12 +18,23 @@ def make_prediction(thread_url):
       client_id=CLIENT_ID, client_secret=CLIENT_SECRET, 
       username=USERNAME, password=PASSWORD)
 
-    submission = r.submission(url=thread_url)
-    if not submissions.subreddit.display_name == "borrow":
+    submission = None
+    try:
+        submission = r.submission(url=thread_url)
+    except praw.exceptions.ClientException:
+        logger.warning('make_prediction recieved non /r/borrow URL', url=thread_url)
         return {"Error": "Please only enter posts from the /r/borrow/ subreddit"}
-    if not "[REQ]" in submissions.title:
+
+    if not submission.subreddit.display_name == "borrow":
+        logger.warning('make_prediction recieved non /r/borrow URL', url=thread_url)
+        return {"Error": "Please only enter posts from the /r/borrow/ subreddit"}
+
+    if not "[REQ]" in submission.title:
+        logger.warning('make_prediction recieved non [REQ] post', url=thread_url)
         return {"Error": "Please only enter [REQ] posts from the /r/borrow/ subreddit"}
+
     usernameStr = submission.author.name
+    logger.info('make_prediction received a valid url, starting prediction', url=thread_url)
 
     predictive_data = get_predictive_data(usernameStr)
     predictions = predict_user_repayment2(predictive_data) 
@@ -35,6 +48,7 @@ def make_prediction(thread_url):
             "guess": str(predictions[0][0]),
             "num_borrow": predictive_data["num_borrow"], 
             "num_req": predictive_data["num_req"]}
+    logger.info('make_prediction received a valid url, ending prediction', url=thread_url)
     return answer
 
 def get_predictive_data(username):
