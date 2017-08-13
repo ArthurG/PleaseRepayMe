@@ -2,7 +2,7 @@
 
   <div class="wrapper">
     <footer class="container">
-    <h2 class="bot-header"> Repaid - Data-based lending</h2>
+    <h2 class="bot-header"> PleaseRepay.me - Data-driven lending</h2>
     <p class="bot-links">About | <a v-on:click="openTos"> Terms of Service </a></p>
     <p class="bot-icons"><icon name="github"></icon> <icon name="envelope"></icon></p>
     <p class="bot-copy">Copyright 2017, Made with <span class="highlight"><3</span> in Waterloo, Ontario, Canada</p>
