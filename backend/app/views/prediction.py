@@ -22,7 +22,7 @@ def predict():
             return jsonify(pickle.loads(result))
         else:
             answer = pipeline.make_prediction(thread_url)
-            redis.setex(thread_url, 500000, pickle.dumps(answer))
+            redis.setex(thread_url, 60*24*2, pickle.dumps(answer)) # Cache expires in 2 days
             logger.info('Predict endpoint cached result', url=thread_url)
             return jsonify(answer)
 
