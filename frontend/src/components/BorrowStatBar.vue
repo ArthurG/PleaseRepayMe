@@ -25,7 +25,7 @@ export default Bar.extend({
           }
         ]
       }, {
-        maintainAspectRatio: false,
+        maintainAspectRatio: true,
         legend: {
           display: false
         },

@@ -20,16 +20,16 @@
 
                   <div class="repayment-prediction user-card-section">
                       <h5 class="user-card-subheader">Loan Outcome Probabilities</h5>
-                      <repayment-stat-pie :height="150" :userProb="user.outcomeLikelihood" class="chart-wrapper px-1"/>
+                      <repayment-stat-pie :height="150" :userProb="user.outcomeLikelihood""/>
                   </div>
 
                   <div class="borrow-statistics user-card-section">
                       <h5 class="user-card-subheader">/r/borrow Statistics</h5>
-                      <borrow-stat-bar :userBorrowData="user.userBorrowData" class="chart-wrapper px-1" :height="90"/>
+                      <borrow-stat-bar :userBorrowData="user.userBorrowData" :height="90"/>
                   </div>
               </div>
               <div v-else class="user-card-empty">
-                  <pulse-loader :loading="loading" :color="color" :size="size"></pulse-loader>
+                  <pulse-loader :color="color"></pulse-loader>
               </div>
             </div>
           </div>

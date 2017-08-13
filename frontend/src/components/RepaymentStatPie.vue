@@ -1,9 +1,7 @@
 <script>
-import { Pie, mixins } from 'vue-chartjs'
-const { reactiveProp } = mixins
+import { Pie } from 'vue-chartjs'
 
 export default Pie.extend({
-  mixins: [reactiveProp],
   props: ['userProb'],
   mounted () {
     this.render()
@@ -24,7 +22,7 @@ export default Pie.extend({
           }
         ]
       }, {
-        maintainAspectRatio: false,
+        maintainAspectRatio: true,
         responsive: true,
         animation: {
           duration: 1500
