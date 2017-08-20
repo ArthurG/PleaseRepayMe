@@ -23,15 +23,15 @@ def make_prediction(thread_url):
         submission = r.submission(url=thread_url)
     except praw.exceptions.ClientException:
         logger.warning('make_prediction recieved non /r/borrow URL', url=thread_url)
-        return {"Error": "Please only enter posts from the /r/borrow/ subreddit"}
+        return ({"error": "Please only enter posts from the /r/borrow/ subreddit"}, 400)
 
     if not submission.subreddit.display_name == "borrow":
         logger.warning('make_prediction recieved non /r/borrow URL', url=thread_url)
-        return {"Error": "Please only enter posts from the /r/borrow/ subreddit"}
+        return ({"error": "Please only enter posts from the /r/borrow/ subreddit"}, 400)
 
     if not "[REQ]" in submission.title:
         logger.warning('make_prediction recieved non [REQ] post', url=thread_url)
-        return {"Error": "Please only enter [REQ] posts from the /r/borrow/ subreddit"}
+        return ({"error": "Please only enter [REQ] posts from the /r/borrow/ subreddit"}, 400)
 
     usernameStr = submission.author.name
     logger.info('make_prediction received a valid url, starting prediction', url=thread_url)
@@ -49,7 +49,7 @@ def make_prediction(thread_url):
             "num_borrow": predictive_data["num_borrow"], 
             "num_req": predictive_data["num_req"]}
     logger.info('make_prediction received a valid url, ending prediction', url=thread_url)
-    return answer
+    return (answer, 200)
 
 def get_predictive_data(username):
   r = praw.Reddit(user_agent='BorrowR | https://github.com/guoarthur/reddit-queries',

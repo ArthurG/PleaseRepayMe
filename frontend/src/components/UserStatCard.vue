@@ -1,133 +1,81 @@
 <template>
     <div class="row col-lg-12">
         <div class="col-lg-6" v-for="user in userDetails" >
-          <div class="user-card">
-            <div>
-              <div class="user-card-header">
-                 {{user.name}} 
-                  <a class="thread-link" v-if="user.name" v-bind:href="user.url" target="_blank"> 
-                    Link to thread 
-                  </a>
-              </div>
-              <div v-if="user.hasResult">
+            <div class="user-card">
+                <div>
+                    <div class="user-card-header">
+                        {{user.name}} 
+                        <a class="thread-link" v-if="user.name" v-bind:href="user.url" target="_blank"> 
+                            Link to thread 
+                        </a>
+                    </div>
+                    <div>
+                        <div class="borrow-prediction user-card-section">
+                            <h5 class="user-card-subheader">Predicted Outcome</h5>
+                            <p> 
+                                {{user.guessInWords}}
+                            </p>
+                        </div>
 
-                  <div class="borrow-prediction user-card-section">
-                      <h5 class="user-card-subheader">Predicted Outcome</h5>
-                      <p> 
-                         {{user.guessInWords}}
-                      </p>
-                  </div>
+                        <div class="repayment-prediction user-card-section">
+                            <h5 class="user-card-subheader">Loan Outcome Probabilities</h5>
+                            <repayment-stat-pie :height="150" :userProb="user.outcomeLikelihood""/>
+                        </div>
 
-                  <div class="repayment-prediction user-card-section">
-                      <h5 class="user-card-subheader">Loan Outcome Probabilities</h5>
-                      <repayment-stat-pie :height="150" :userProb="user.outcomeLikelihood""/>
-                  </div>
-
-                  <div class="borrow-statistics user-card-section">
-                      <h5 class="user-card-subheader">/r/borrow Statistics</h5>
-                      <borrow-stat-bar :userBorrowData="user.userBorrowData" :height="90"/>
-                  </div>
-              </div>
-              <div v-else class="user-card-empty">
-                  <pulse-loader :color="color"></pulse-loader>
-              </div>
+                        <div class="borrow-statistics user-card-section">
+                            <h5 class="user-card-subheader">/r/borrow Statistics</h5>
+                            <borrow-stat-bar :userBorrowData="user.userBorrowData" :height="90"/>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
 
-       <b-modal id="modal1" title="Error Retrieving Prediction" :hide-footer="true" >
-          <p>
-             Your URL is likely invalid, or Reddit servers are down. Please try again.
-          </p>
-       </b-modal>
-
-       <b-modal id="modal2" title="Request not processed" :hide-footer="true" >
-          <p>
-             Statistics were previously retrieved for that user. In an effort to save computing power, that request was not processed. Please look in your current results to get the repayment liklihood instead.
-          </p>
-       </b-modal>
+        <b-modal id="error-modal" title="Error Retrieving Prediction" :hide-footer="true" @hidden="close">
+            <p>
+                {{errorMessage}}
+            </p>
+        </b-modal>
     </div>
 </template>
 
 <script>
 import BorrowStatBar from './BorrowStatBar'
 import RepaymentStatPie from './RepaymentStatPie'
-import PulseLoader from 'vue-spinner/src/PulseLoader.vue'
+import {mapGetters, mapState} from 'vuex'
 
 export default {
   props: ['RedditBorrowUrls'],
   name: 'UserStatCard',
-  data () {
-    return {
-      userDetails: [],
-      pastUrls: [],
-      pastLength: 0,
-      color: '#2196F3'
+  methods: {
+    close () {
+      this.$store.commit('clearError')
+    }
+  },
+  computed: {
+    ...mapState({
+      inProgress: 'inProgress',
+      errorMessage: 'errorMessage'
+    }),
+    ...mapGetters({
+      userDetails: 'userDataRev'
+    })
+  },
+  watch: {
+    errorMessage: function () {
+      if (this.errorMessage !== '') {
+        this.$root.$emit('show::modal', 'error-modal')
+      }
     }
   },
   components: {
     BorrowStatBar,
-    RepaymentStatPie,
-    PulseLoader
-  },
-  watch: {
-    RedditBorrowUrls: function (newUrl) {
-      var diff = newUrl.borrowUrls.filter(x => this.pastUrls.indexOf(x) < 0)
-
-      // Process new request
-      diff.forEach((url) => {
-        this.addUserDetails(url)
-        this.pastUrls.push(url)
-      })
-
-      // Request not processed since it's duplicate
-      if (newUrl.borrowUrls.length > this.pastLength && diff.length === 0) {
-        this.$root.$emit('show::modal', 'modal2')
-      }
-      this.pastLength = newUrl.borrowUrls.length
-    }
-  },
-  methods: {
-    getLink (user) {
-      return 'https://www.reddit.com/u/' + user
-    },
-    addUserDetails (url) {
-      var item = {hasResult: false}
-      this.userDetails.unshift(item)
-      this.$http.get('http://localhost:5000/predict?thread_url=' + url).then(resp => {
-        item.url = url
-        item.name = '/u/' + resp.body.user
-        item.outcomeLikelihood = resp.body.prediction.map(function (x) {
-          return x * 100
-        })
-        item.guess = resp.body.guess
-        switch (item.guess) {
-          case '0':
-            item.guessInWords = 'Default'
-            break
-          case '1':
-            item.guessInWords = 'Repaid'
-            break
-          case '2':
-            item.guessInWords = 'No Lender Found'
-            break
-          default:
-            item.guessInWords = 'Error: No guess found'
-        }
-        item.userBorrowData = [resp.body.num_req, resp.body.num_borrow]
-        item.hasResult = true
-      }, () => {
-        var idx = this.userDetails.indexOf(item)
-        this.userDetails.splice(idx, 1)
-        this.$root.$emit('show::modal', 'modal1')
-      })
-    }
+    RepaymentStatPie
   }
 }
 </script>
 
 <style scoped>
-
 .card-link{
   color: black;
   text-decoration: none;
@@ -164,5 +112,4 @@ export default {
   font-size: 0.4em;
   color: #9e9e9e;
 }
-
 </style scoped>

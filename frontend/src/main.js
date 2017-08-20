@@ -3,6 +3,7 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import store from './store'
 import VueResource from 'vue-resource'
 
 import Icon from 'vue-awesome/components/Icon'
@@ -24,6 +25,7 @@ Vue.use(VueCookie)
 new Vue({
   el: '#app',
   router,
+  store,
   template: '<App/>',
   components: { App }
 })

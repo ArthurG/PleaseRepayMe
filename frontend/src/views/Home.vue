@@ -1,20 +1,20 @@
-  <template>
+<template>
     <div class="hello">
-      <PredictUser></PredictUser>
+      <HomeContent></HomeContent>
       <BotNav></BotNav>
       <Legal></Legal>
     </div>
-  </template>
+</template>
 
-  <script>
-  import PredictUser from './../components/PredictUser'
+<script>
+  import HomeContent from './../components/HomeContent'
   import BotNav from './../components/BotNav'
   import Legal from './../components/Legal'
 
   export default {
-    name: 'hello',
+    name: 'HomeView',
     components: {
-      PredictUser,
+      HomeContent,
       BotNav,
       Legal
     }
