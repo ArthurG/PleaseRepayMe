@@ -32,7 +32,7 @@ export default new Vuex.Store({
   actions: {
     retrievePrediction (context, {threadUrl}) {
       context.commit('makeQuery')
-      Vue.http.get('http://localhost:5000/predict?thread_url=' + threadUrl).then(resp => {
+      Vue.http.get(process.env.BACKEND_SERVER + 'predict?thread_url=' + threadUrl).then(resp => {
         let item = {}
         item.url = threadUrl
         item.name = '/u/' + resp.body.user
