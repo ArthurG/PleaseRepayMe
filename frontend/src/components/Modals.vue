@@ -36,6 +36,9 @@ After taking note of the characteristics the characteristics that correlate with
         <p class="info"> 
 Our algorithm is quite good at predicting outcomes, with an <a href="https://en.wikipedia.org/wiki/F1_score">F1 Score</a> of more than 90%.  
         </p>
+        <p class="info"> 
+Special shoutout goes to <a href="https://www.reddit.com/user/Stuck_In_the_Matrix"> /u/Stuck_In_the_Matrix </a> for providing the data for this project!
+        </p>
         <h5>
 Try it out! It's pretty cool if you ask me :)
         </h5>
