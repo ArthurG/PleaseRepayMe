@@ -31,3 +31,7 @@ BCRYPT_LOG_ROUNDS = 12
 #Logging configuration
 LOG_FILE = True
 LOG_LEVEL = logging.INFO
+
+#Redis configuration
+REDIS_DURATION = 60*24*30
+REDIS_ON=True
