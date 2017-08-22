@@ -113,7 +113,7 @@ export default {
 
 <style>
   #modal-tos>.modal-dialog {
-    max-width: 1000px !important;
+    max-width: 1400px !important;
     width: 95%;
   }
 </style>
