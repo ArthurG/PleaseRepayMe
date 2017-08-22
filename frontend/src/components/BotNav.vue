@@ -20,7 +20,7 @@
         <a v-on:click="openPending"><icon name="envelope"></icon></a>
     </p>
     <p class="bot-copy">
-        Copyright 2017, Made with <span class="highlight"><3</span> in Canada
+        Copyright 2017, Made with <span class="highlight"><3</span>
     </p>
     </footer>
   </div>
