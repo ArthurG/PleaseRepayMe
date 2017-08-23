@@ -28,7 +28,7 @@ def predict():
             return jsonify(pickle.loads(result))
         else:
             answer, status_code = pipeline.make_prediction(thread_url)
-            if (status_code == 200) && app.config["REDIS_ON"]: 
+            if (status_code == 200) and app.config["REDIS_ON"]: 
                 #Cache the prediction
                 redis.setex(thread_url, app.config["REDIS_DURATION"], pickle.dumps(answer)) # Cache expires in 2 days
                 logger.info('Predict endpoint cached result', url=thread_url)

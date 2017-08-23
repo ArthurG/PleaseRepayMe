@@ -33,5 +33,5 @@ LOG_FILE = True
 LOG_LEVEL = logging.DEBUG
 
 #Redis configuration
-REDIS_DURATION = 60*24*30
+REDIS_DURATION = 60*60*24*30
 REDIS_ON=True
