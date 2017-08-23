@@ -17,14 +17,14 @@
 So you think you know what makes a good borrower? 
         </h3>
         <h6 class="info">
-Well, at least 300 Redditors don't.
+Well, at least 300 Redditors stole some money from lenders on /r/borrow.
         </h6>
 
         <p class="info">
-Having facilitated more than 9000 loans, <a href="http://reddit.com/r/borrow/">www.reddit.com/r/borrow/</a> holds a ton of information on what makes a Redditor trustworthy (read: not a scammer on /r/borrow and is likely to repay their loans). PleaseRepay.me seeks to capitalize on this information, and use it to predict the outcome of a loan. 
+Having seen more than 12,000 loan requests, <a href="http://reddit.com/r/borrow/">www.reddit.com/r/borrow/</a> holds a ton of information on what types of Redditors are trustworthy. PleaseRepay.me seeks to capitalize on this information, and use it to predict the outcome of a given loan. 
         </p>
         <p class="info"> 
-We categorize all "[REQ]" on /r/borrow into three buckets:
+We categorize all "[REQ]" threads on /r/borrow into three buckets:
           <ul>
               <li> Repaid </li>
               <li> Unpaid </li>
