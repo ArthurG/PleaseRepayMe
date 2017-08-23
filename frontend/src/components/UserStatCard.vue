@@ -1,6 +1,6 @@
 <template>
-    <div class="row col-lg-12">
-        <div class="col-lg-6" v-for="user in userDetails" >
+    <div class="row col-lg-12" id="user-cards">
+        <div class="col-lg-6" v-for="(user, index) in userDetails" >
             <div class="user-card">
                 <div>
                     <div class="user-card-header">
@@ -19,12 +19,16 @@
 
                         <div class="repayment-prediction user-card-section">
                             <h5 class="user-card-subheader">Loan Outcome Probabilities</h5>
-                            <repayment-stat-pie :height="150" :userProb="user.outcomeLikelihood""/>
+                            <repayment-stat-pie :height="150" 
+                                                :userProb="user.outcomeLikelihood"
+                                                :isFirst="index == 0"/>
                         </div>
 
                         <div class="borrow-statistics user-card-section">
                             <h5 class="user-card-subheader">/r/borrow Statistics</h5>
-                            <borrow-stat-bar :userBorrowData="user.userBorrowData" :height="90"/>
+                            <borrow-stat-bar :userBorrowData="user.userBorrowData" 
+                                             :height="90"
+                                             :isFirst="index == 0"/>
                         </div>
                     </div>
                 </div>
@@ -76,6 +80,19 @@ export default {
 </script>
 
 <style scoped>
+
+#user-cards .user-card{
+  transition:0.5s;
+}
+
+#user-cards:hover .user-card{
+  opacity: 0.3;
+}
+
+#user-cards:hover .user-card:hover{
+  opacity: 1;
+}
+
 .card-link{
   color: black;
   text-decoration: none;
@@ -112,4 +129,5 @@ export default {
   font-size: 0.4em;
   color: #9e9e9e;
 }
+
 </style scoped>

@@ -2,12 +2,12 @@
 import { Pie } from 'vue-chartjs'
 
 export default Pie.extend({
-  props: ['userProb'],
+  props: ['userProb', 'isFirst'],
   mounted () {
     this.render()
   },
   watch: {
-    userProb: function () {
+    userProb () {
       this.render()
     }
   },
@@ -24,9 +24,7 @@ export default Pie.extend({
       }, {
         maintainAspectRatio: true,
         responsive: true,
-        animation: {
-          duration: 1500
-        }
+        animation: this.isFirst ? { duration: 1500 } : false
       })
     }
   }

@@ -4,7 +4,7 @@ import { Bar } from 'vue-chartjs'
 const brandPrimary = '#2194F3'
 
 export default Bar.extend({
-  props: ['userBorrowData'],
+  props: ['userBorrowData', 'isFirst'],
   mounted () {
     this.render()
   },
@@ -26,6 +26,7 @@ export default Bar.extend({
         ]
       }, {
         maintainAspectRatio: true,
+        animation: this.isFirst ? { duration: 1500 } : false,
         legend: {
           display: false
         },
