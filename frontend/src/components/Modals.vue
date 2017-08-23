@@ -8,9 +8,9 @@
 
        <b-modal id="modal-about" title="About" hide-footer>
 
-        <p1 class="summary">
+        <p class="summary">
  TL;DR: We use <a href="https://en.wikipedia.org/wiki/Machine_learning">Machine Learning</a> to predict loan outcomes on Reddit's /r/borrow. Our algorithm is quite good at predicting loan outcomes. We would love for you to try it out!
-        </p1>
+        </p>
 
         <hr/>
         <h3 class="info">
