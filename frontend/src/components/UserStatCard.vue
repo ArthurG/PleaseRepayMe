@@ -70,6 +70,15 @@ export default {
       if (this.errorMessage !== '') {
         this.$root.$emit('show::modal', 'error-modal')
       }
+    },
+    userDetails () {
+      // Destroy old charts
+      for (let index in window.Chart.instances) {
+        let currChart = window.Chart.instances[index]
+        if (currChart !== undefined && currChart !== null) {
+          currChart.destroy()
+        }
+      }
     }
   },
   components: {
