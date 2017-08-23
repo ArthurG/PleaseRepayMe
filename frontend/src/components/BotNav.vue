@@ -4,15 +4,24 @@
     <h2 class="bot-header"> PleaseRepay.me - Data-driven lending</h2>
     <p class="bot-content">
         <span class="bot-links">
-            About | <a v-on:click="openTos"> Terms of Service </a>
+            <a v-on:click="openAbout"> About </a> | 
+            <a v-on:click="openTos"> Terms of Service </a>
         </span>
         <br/>
         <span class="tos-agreement">
             By using this site, I agree to be bound by the Term of Service
          </span>
     </p>
-    <p class="bot-icons"><icon name="github"></icon> <icon name="envelope"></icon></p>
-    <p class="bot-copy">Copyright 2017, Made with <span class="highlight"><3</span> in Waterloo, Ontario, Canada</p>
+
+    <p class="bot-icons">
+
+        <a v-on:click="openPending"><icon name="github"></icon> </a>
+
+        <a v-on:click="openPending"><icon name="envelope"></icon></a>
+    </p>
+    <p class="bot-copy">
+        Copyright 2017, Made with <span class="highlight"><3</span>
+    </p>
     </footer>
   </div>
 </template>
@@ -23,6 +32,12 @@ export default {
   methods: {
     openTos () {
       this.$root.$emit('show::modal', 'modal-tos')
+    },
+    openAbout () {
+      this.$root.$emit('show::modal', 'modal-about')
+    },
+    openPending () {
+      this.$root.$emit('show::modal', 'modal-coming-soon')
     }
   }
 }

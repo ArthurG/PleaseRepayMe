@@ -4,7 +4,7 @@
         no-close-on-backdrop
         ok-only
         no-close-on-esc>
-         <h5> By Proceeding to use this website, I agree to be bound by the 
+         <h5> By proceeding to use this website, I agree to be bound by the 
               <a v-on:click="openTos"> Terms of Service </a>
          </h5>
       </b-modal>
@@ -113,7 +113,7 @@ export default {
 
 <style>
   #modal-tos>.modal-dialog {
-    max-width: 1000px !important;
+    max-width: 1400px !important;
     width: 95%;
   }
 </style>

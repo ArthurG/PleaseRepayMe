@@ -3,6 +3,7 @@
       <HomeContent></HomeContent>
       <BotNav></BotNav>
       <Legal></Legal>
+      <Modals></Modals>
     </div>
 </template>
 
@@ -10,13 +11,15 @@
   import HomeContent from './../components/HomeContent'
   import BotNav from './../components/BotNav'
   import Legal from './../components/Legal'
+  import Modals from './../components/Modals'
 
   export default {
     name: 'HomeView',
     components: {
       HomeContent,
       BotNav,
-      Legal
+      Legal,
+      Modals
     }
   }
 </script>

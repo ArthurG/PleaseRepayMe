@@ -13,6 +13,7 @@
     "bootstrap-vue": "^0.20.1",
     "chart.js": "^2.6.0",
     "vue": "^2.4.2",
+    "vue-analytics": "^4.4.0",
     "vue-awesome": "^2.3.1",
     "vue-chartjs": "^2.8.2",
     "vue-cookie": "^1.1.4",
