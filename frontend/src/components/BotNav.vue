@@ -15,7 +15,7 @@
 
     <p class="bot-icons">
 
-        <a v-on:click="openPending"><icon name="github"></icon> </a>
+        <a href="https://github.com/guoarthur/PleaseRepayMe"><icon name="github"></icon> </a>
 
         <a v-on:click="openPending"><icon name="envelope"></icon></a>
     </p>
